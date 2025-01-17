@@ -29,10 +29,13 @@ export default function MoiveDetail() {
                 backgroundImage: `url('https://image.tmdb.org/t/p/original${movie.backdrop_path}')`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
-                opacity: 1,
             }}
         >
-            <div className="container mx-auto flex flex-wrap gap-8">
+            <div 
+                className="container mx-auto flex flex-wrap gap-8"
+                style={{
+                }}
+            >
                 <div >
                     <img 
                         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
