@@ -24,7 +24,14 @@ export default function MoiveDetail() {
     // const ImageUrl = 'https://miro.medium.com/v2/resize:fit:1400/0*gNmwcCm2Pe6oHkNc.jpg'
     return (
         <div 
-            className="bg-red-300 w-full h-[600px] p-4">
+            className="bg-red-300 w-full h-[600px] p-4"
+            style={{
+                backgroundImage: `url('https://image.tmdb.org/t/p/original${movie.backdrop_path}')`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                opacity: 1,
+            }}
+        >
             <div className="container mx-auto flex flex-wrap gap-8">
                 <div >
                     <img 

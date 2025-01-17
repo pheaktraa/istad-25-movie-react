@@ -41,7 +41,7 @@ export default function Home() {
             {/* <hr /> */}
             <ul className="bg-green-300 grid gap-x-8 gap-y-10 mt-0 px-10 sm:grid-cols-2 lg:grid-cols-3">
                 {
-                    movieData.results && movieData.results.slice(0, 3).map((movie) => (
+                    movieData.results && movieData.results.slice(0, 10).map((movie) => (
                         <li className="bg-gray-300 w-full mx-auto py-10  group sm:max-w-sm" >
                             <Link to={`/movie/${movie.id}`} >
                                 <img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} loading="lazy" alt={movie.original_title} className="w-full rounded-lg" />
