@@ -64,6 +64,7 @@ export default function AppNavbar() {
         { title: "Movies", path: "/movies" },
         { title: "Contact Us", path: "/contact-us" },
         { title: "About Us", path: "/about-us" },
+        { title: "Login", path: "/login" },
     ]
 
     const submenuNav = [

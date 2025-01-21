@@ -1,21 +1,71 @@
+import { useFormik } from "formik"
+import { useDispatch } from "react-redux";
+import * as Yup from 'yup';
+
 export default function Register() {
+
+    const dispatch = useDispatch()
+
+    // create formik for handle from data 
+    // change , submit , blur
+    const formik = useFormik({
+        initialValues: {
+            // these name have to be same as id and name down below in code section
+            email: '',
+            password: '',
+        },
+
+        //yup
+        validationSchema: Yup.object({
+            // firstName: Yup.string()
+            //   .max(15, 'Must be 15 characters or less')
+            //   .required('Required'),
+            password: Yup.string()
+                .max(20, 'Must be 20 characters or less')
+                .min(8, 'Must be 8 character up')
+                .required('Required'),
+            email: Yup.string()
+                .email('Invalid email address')
+                .required('Required'),
+        }),
+        onSubmit: values => {
+            alert(JSON.stringify(values, null, 2));
+        },
+
+        // onSubmit: (value) => {
+        //     console.log('value from formik', value);
+        // },
+
+        // doesn't work for onChange
+        // onChange: (value: String) => {
+        //     console.log('value from formik', value);
+        // }
+    });
+
+
+
+
+
     return (
         <main className="w-full h-screen flex flex-col items-center justify-center bg-gray-50 sm:px-4">
             <div className="w-full space-y-6 text-gray-600 sm:max-w-md">
                 <div className="text-center">
-                    <img src="https://floatui.com/logo.svg" width={150} className="mx-auto" />
+                    {/* <img src="https://floatui.com/logo.svg" width={150} className="mx-auto" /> */}
                     <div className="mt-5 space-y-2">
-                        <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">Create an account</h3>
-                        <p className="">Already have an account? <a href="javascript:void(0)" className="font-medium text-indigo-600 hover:text-indigo-500">Log in</a></p>
+                        <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">Login</h3>
+                        {/* <p className="">Already have an account? <a href="javascript:void(0)" className="font-medium text-indigo-600 hover:text-indigo-500">Log in</a></p> */}
                     </div>
                 </div>
                 <div className="bg-white shadow p-4 py-6 sm:p-6 sm:rounded-lg">
                     <form
-                        onSubmit={(e) => e.preventDefault()}
+                        // onsubmit default
+                        // onSubmit={(e) => e.preventDefault()} 
+                        // our onsubmit 
+                        onSubmit={formik.handleSubmit}
                         className="space-y-5"
 
                     >
-                        <div>
+                        {/* <div>
                             <label className="font-medium">
                                 Name
                             </label>
@@ -24,31 +74,44 @@ export default function Register() {
                                 required
                                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                             />
-                        </div>
+                        </div> */}
                         <div>
                             <label className="font-medium">
                                 Email
                             </label>
                             <input
+                                onChange={formik.handleChange}
+                                value={formik.values.email}
+                                id="email"
+                                name="email"
                                 type="email"
                                 required
                                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                             />
+                            {formik.touched.email && formik.errors.email ? (
+                                <div>{formik.errors.email}</div>
+                            ) : null}
                         </div>
                         <div>
                             <label className="font-medium">
                                 Password
                             </label>
                             <input
+                                onChange={formik.handleChange}
+                                value={formik.values.password}
+                                id="password"
+                                name="password"
                                 type="password"
                                 required
                                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                             />
                         </div>
                         <button
+                            // have to add type submit so data from form go
+                            type="submit"
                             className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150"
                         >
-                            Create account
+                            Login
                         </button>
                     </form>
                     <div className="mt-5">
