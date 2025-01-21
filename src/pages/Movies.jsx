@@ -1,6 +1,6 @@
 import MovieCard from "../components/MovieCard";
 
-export default function People() {
+export default function Movies() {
     return(
         <MovieCard />
     )
