@@ -61,7 +61,7 @@ export default function AppNavbar() {
 
     // Replace javascript:void(0) paths with your paths
     const navigation = [
-        { title: "Movies", path: "/people" },
+        { title: "Movies", path: "/movies" },
         { title: "Contact Us", path: "/contact-us" },
         { title: "About Us", path: "/about-us" },
     ]
