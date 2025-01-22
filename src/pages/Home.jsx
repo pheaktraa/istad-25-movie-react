@@ -44,7 +44,7 @@ export default function Home() {
                     movieData.results && movieData.results.slice(0, 10).map((movie) => (
                         <li className="bg-gray-300 w-full mx-auto py-10  group sm:max-w-sm" >
                             <Link to={`/movie/${movie.id}`} >
-                                <img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} loading="lazy" alt={movie.original_title} className="w-full rounded-lg" />
+                                <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} loading="lazy" alt={movie.original_title} className="w-full h-2/3 rounded-lg" />
                                 <div className="mt-3 space-y-2 px-6">
                                     <span className="block text-indigo-600 text-sm">
                                         {movie.release_date}

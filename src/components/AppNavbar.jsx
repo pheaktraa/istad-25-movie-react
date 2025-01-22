@@ -1,14 +1,66 @@
 import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router"
+import { getProfile } from "../features/auth/authAction"
 
 // Avtar with darpdown menu
-const AvatarMenue = () => {
+// const AvatarMenue = () => {
+
+//     const [state, setState] = useState(false)
+//     const profileRef = useRef()
+
+
+
+//     const navigation = [
+//         { title: "Dashboard", path: "javascript:void(0)" },
+//         { title: "Analytics", path: "javascript:void(0)" },
+//         { title: "Profile", path: "javascript:void(0)" },
+//         { title: "Settings", path: "javascript:void(0)" },
+//     ]
+
+
+//     useEffect(() => {
+//         const handleDropDown = (e) => {
+//             if (!profileRef.current.contains(e.target)) setState(false)
+//         }
+//         document.addEventListener('click', handleDropDown)
+//     }, [])
+
+//     return (
+//         <div className="relative border-t lg:border-none">
+//             <div className="">
+//                 <button ref={profileRef} className="hidden w-10 h-10 outline-none rounded-full ring-offset-2 ring-gray-200 lg:focus:ring-2 lg:block"
+//                     onClick={() => setState(!state)}
+//                 >
+//                     <img
+//                         src="https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg"
+//                         className="w-full h-full rounded-full"
+//                     />
+//                 </button>
+//             </div>
+//             <ul className={`bg-white top-14 right-0 mt-6 space-y-6 lg:absolute lg:border lg:rounded-md lg:w-52 lg:shadow-md lg:space-y-0 lg:mt-0 ${state ? '' : 'lg:hidden'}`}>
+//                 {
+//                     navigation.map((item, idx) => (
+//                         <li key={idx}>
+//                             <a className="block text-gray-600 hover:text-gray-900 lg:hover:bg-gray-50 lg:p-3" href={item.path}>
+//                                 {item.title}
+//                             </a>
+//                         </li>
+//                     ))
+//                 }
+//                 <button className="block w-full text-justify text-gray-600 hover:text-gray-900 border-t py-3 lg:hover:bg-gray-50 lg:p-3">
+//                     Logout
+//                 </button>
+//             </ul>
+//         </div>
+//     )
+// }
+
+// Avtar with darpdown menu
+const AvatarMenue = ({avatar}) => {
 
     const [state, setState] = useState(false)
     const profileRef = useRef()
-
-
 
     const navigation = [
         { title: "Dashboard", path: "javascript:void(0)" },
@@ -32,7 +84,7 @@ const AvatarMenue = () => {
                     onClick={() => setState(!state)}
                 >
                     <img
-                        src="https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg"
+                        src={avatar}
                         className="w-full h-full rounded-full"
                     />
                 </button>
@@ -55,15 +107,24 @@ const AvatarMenue = () => {
     )
 }
 
+
+
+
 export default function AppNavbar() {
 
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
     const count = useSelector((state) => state.counter.value)
-
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
+    const profile = useSelector(state => state.auth.profile)
+    const accessToken = useSelector(state => state.auth.accessToken)
 
     const [state, setState] = useState(false)
+
+    useEffect(() => {
+        console.log('app navbar use effect')
+        dispatch(getProfile(accessToken))
+    }, [isAuthenticated])
 
     // Replace javascript:void(0) paths with your paths
     const navigation = [
@@ -142,7 +203,7 @@ export default function AppNavbar() {
                         }
                         {
                             isAuthenticated && isAuthenticated ? (
-                                <AvatarMenue />
+                                <AvatarMenue avatar={profile.avatar} />
                             ) : (
                                 <li >
                                     <Link to='/login' className="block text-gray-700 hover:text-gray-900">
