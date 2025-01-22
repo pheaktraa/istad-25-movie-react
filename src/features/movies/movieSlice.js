@@ -28,6 +28,7 @@ export const movieSlice = createSlice({
                 // code
                 state.status = "success"
                 state.movieData = action.payload // actionpayload from api
+                
             })
 
             .addCase(fetchMovies.rejected, (state, action) => {

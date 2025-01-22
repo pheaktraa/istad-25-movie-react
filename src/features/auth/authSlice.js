@@ -4,7 +4,7 @@ import { login } from "./authAction";
 
 const initialState = {
     isAuthenticated: false,
-    // accessToken
+    accessToken: null,
     profile: {},
 }
 
@@ -18,19 +18,22 @@ const authSlice = createSlice({
             .addCase(login.pending, (state, action) => {
                 // code
                 state.isAuthenticated = false
-
+                // state.profile = {}
             })
 
             .addCase(login.fulfilled, (state, action) => {
                 // code
-                state.status = "success"
+                // state.status = "success"
                 state.isAuthenticated = true
+                state.accessToken = action.payload.access_token
+                console.log('status ', state.isAuthenticated)
+                console.log('access token ', state.accessToken)
             })
 
             .addCase(login.rejected, (state, action) => {
                 // code
-                state.status = "failed"
-                state.error = action.error.message
+                state.isAuthenticated = false
+                console.log('rejected rejected ', action.error)
             })
     }
 

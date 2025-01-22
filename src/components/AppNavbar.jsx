@@ -8,6 +8,8 @@ const AvatarMenue = () => {
     const [state, setState] = useState(false)
     const profileRef = useRef()
 
+
+
     const navigation = [
         { title: "Dashboard", path: "javascript:void(0)" },
         { title: "Analytics", path: "javascript:void(0)" },
@@ -57,6 +59,8 @@ export default function AppNavbar() {
 
     const count = useSelector((state) => state.counter.value)
 
+    const isAuthenticated = useSelector(state => state.isAuthenticated)
+
     const [state, setState] = useState(false)
 
     // Replace javascript:void(0) paths with your paths
@@ -64,7 +68,7 @@ export default function AppNavbar() {
         { title: "Movies", path: "/movies" },
         { title: "Contact Us", path: "/contact-us" },
         { title: "About Us", path: "/about-us" },
-        { title: "Login", path: "/login" },
+        // { title: "Login", path: "/login" },
     ]
 
     const submenuNav = [
@@ -134,7 +138,18 @@ export default function AppNavbar() {
                                 )
                             })
                         }
-                        <AvatarMenue />
+                        {
+                            isAuthenticated && isAuthenticated ? (
+                                <AvatarMenue />
+                            ) : (
+                                <li >
+                                    <Link to='/login' className="block text-gray-700 hover:text-gray-900">
+                                        Log in
+                                    </Link>
+                                </li>
+                            )
+                        }
+                        {/* <AvatarMenue /> */}
                     </ul>
                 </div>
             </div>

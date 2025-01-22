@@ -1,10 +1,24 @@
 import { useFormik } from "formik"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as Yup from 'yup';
+import { login } from "../features/auth/authAction";
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
 
 export default function Register() {
 
+    const navigate = useNavigate()
+
     const dispatch = useDispatch()
+
+    const {isAuthenticated} = useSelector(state => state.auth)
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            // route to '/' home
+            navigate('/')
+        }
+    }, [navigate, isAuthenticated])
 
     // create formik for handle from data 
     // change , submit , blur
@@ -21,20 +35,21 @@ export default function Register() {
             //   .max(15, 'Must be 15 characters or less')
             //   .required('Required'),
             password: Yup.string()
-                .max(20, 'Must be 20 characters or less')
+                .max(15, 'Must be 20 characters or less')
                 .min(8, 'Must be 8 character up')
                 .required('Required'),
             email: Yup.string()
                 .email('Invalid email address')
                 .required('Required'),
         }),
-        onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
-        },
-
-        // onSubmit: (value) => {
-        //     console.log('value from formik', value);
+        // onSubmit: values => {
+        //     alert(JSON.stringify(values, null, 2));
         // },
+
+        onSubmit: (value) => {
+            console.log('value from formik', value);
+            dispatch(login(value))
+        },
 
         // doesn't work for onChange
         // onChange: (value: String) => {
@@ -85,11 +100,11 @@ export default function Register() {
                                 id="email"
                                 name="email"
                                 type="email"
-                                required
+                                // required
                                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                             />
                             {formik.touched.email && formik.errors.email ? (
-                                <div>{formik.errors.email}</div>
+                                <div className="text-red-500">{formik.errors.email}</div>
                             ) : null}
                         </div>
                         <div>
@@ -102,9 +117,12 @@ export default function Register() {
                                 id="password"
                                 name="password"
                                 type="password"
-                                required
+                                // required
                                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                             />
+                            {formik.touched.password && formik.errors.password ? (
+                                <div className="text-red-500">{formik.errors.password}</div>
+                            ) : null}
                         </div>
                         <button
                             // have to add type submit so data from form go
