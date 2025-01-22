@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router"
 
 // Avtar with darpdown menu
@@ -57,9 +57,11 @@ const AvatarMenue = () => {
 
 export default function AppNavbar() {
 
+    // const dispatch = useDispatch()
+
     const count = useSelector((state) => state.counter.value)
 
-    const isAuthenticated = useSelector(state => state.isAuthenticated)
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
 
     const [state, setState] = useState(false)
 

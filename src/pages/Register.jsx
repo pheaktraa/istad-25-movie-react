@@ -14,6 +14,8 @@ export default function Register() {
     const {isAuthenticated} = useSelector(state => state.auth)
 
     useEffect(() => {
+        console.log('use effect')
+        console.log('auth ', isAuthenticated)
         if (isAuthenticated) {
             // route to '/' home
             navigate('/')
@@ -47,15 +49,15 @@ export default function Register() {
         // },
 
         onSubmit: (value) => {
-            console.log('value from formik', value);
+            console.log('value from formik', value)
             dispatch(login(value))
-        },
+        }
 
         // doesn't work for onChange
         // onChange: (value: String) => {
         //     console.log('value from formik', value);
         // }
-    });
+    })
 
 
 

@@ -10,18 +10,11 @@ export const login = createAsyncThunk('/auth/login',
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data),
+                },  
+                body: JSON.stringify(data)
             })
-            // {
-            //     method: 'POST';
-            //     headers: {
-            //         'Content-Type'; 'application/json'
-            //     }
-            //     body: JSON.stringify(data);
-            // }
 
-            if (response.status = 401) {
+            if (response.status === 401) {
                 return Promise.reject(error)
             }
 
