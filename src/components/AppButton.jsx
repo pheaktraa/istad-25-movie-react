@@ -1,4 +1,4 @@
-export function ButtonIcon({onClick,icon}) {
+export function ButtonIcon({ onClick, icon }) {
     return (
         <button
             onClick={onClick}
@@ -6,5 +6,5 @@ export function ButtonIcon({onClick,icon}) {
         >
             {icon}
         </button>
-    )
+    );
 }

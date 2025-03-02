@@ -144,8 +144,8 @@ export default function AppNavbar() {
 
 
     return (
-        <header className="text-base lg:text-sm">
-            <div className={`bg-white items-center gap-x-14 px-4 max-w-screen-xl mx-auto lg:flex lg:px-8 lg:static ${state ? "h-full fixed inset-x-0" : ""}`}>
+        <header className="text-base lg:text-sm bg-black">
+            <div className={`items-center gap-x-14 px-4 max-w-screen-xl mx-auto lg:flex lg:px-8 lg:static ${state ? "h-full fixed inset-x-0" : ""}`}>
                 <div className="flex items-center justify-between py-3 lg:py-5 lg:block">
                     <Link to={"/"} >
                         <img
@@ -156,7 +156,7 @@ export default function AppNavbar() {
                         />
                     </Link>
                     <div className="lg:hidden">
-                        <button className="text-gray-500 hover:text-gray-800"
+                        <button className="text-gray-300 hover:text-red-600"
                             onClick={() => setState(!state)}
                         >
                             {
