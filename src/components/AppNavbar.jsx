@@ -41,7 +41,7 @@ const AvatarMenue = ({ avatar }) => {
                 {navigation.map((item, idx) => (
                     <li key={idx}>
                         <a
-                            className="block text-white hover:text-red-600 lg:hover:bg-red   -50 lg:p-3"
+                            className="block text-white hover:text-red-600 lg:hover:bg-red lg:p-3"
                             href={item.path}
                         >
                             {item.title}
@@ -79,8 +79,8 @@ export default function AppNavbar() {
         { title: "Popular", path: "javascript:void(0)" },
         { title: "Trending", path: "javascript:void(0)" },
         { title: "Most Favorite", path: "javascript:void(0)" },
-        { title: "Transactions", path: "javascript:void(0)" },
-        { title: "Plans", path: "javascript:void(0)" },
+        // { title: "Transactions", path: "javascript:void(0)" },
+        // { title: "Plans", path: "javascript:void(0)" },
     ];
 
     return (
@@ -183,7 +183,7 @@ export default function AppNavbar() {
                     </ul>
                 </div>
             </div>
-            <nav className="">
+            <nav className="border-b">
                 <ul className="flex items-center gap-x-3 max-w-screen-xl mx-auto px-4 overflow-x-auto lg:px-8">
                     {submenuNav.map((item, idx) => (
                         <li
@@ -194,7 +194,7 @@ export default function AppNavbar() {
                         >
                             <a
                                 href={item.path}
-                                className="block py-2 px-3 rounded-lg text-white hover:text-white hover:bg-red-600 duration-150"
+                                className="block py-2 px-3 rounded-lg text-white hover:text-white hover:bg-red-600 duration-150 whitespace-nowrap"
                             >
                                 {item.title}
                             </a>

@@ -1,5 +1,8 @@
-export default function Footer() {
+import myIcon from '../assets/img/myIcon.svg';
 
+
+export default function Footer() {
+    
     const footerNavs = [
         {
             href: 'javascript:void()',
@@ -23,14 +26,14 @@ export default function Footer() {
             <div className="max-w-screen-xl mx-auto px-4 md:px-8">
                 <div className="justify-between sm:flex">
                     <div className="space-y-6">
-                        <img src="https://www.floatui.com/logo.svg" className="w-32" />
+                        <img src={myIcon} className="w-32" alt='logo'/>
                         <p className="max-w-md">
-                            Nulla auctor metus vitae lectus iaculis, vel euismod massa efficitur.
+                            <span className="text-red-500 text-xl">ReelRush</span> does not store any files on our server, we only linked to the media which is hosted on 3rd party services.
                         </p>
                         <ul className="flex flex-wrap items-center gap-4 text-sm sm:text-base">
                             {
                                 footerNavs.map((item, idx) => (
-                                    <li className="text-gray-300 hover:text-red-600 duration-150">
+                                    <li className="text-white hover:text-red-600 duration-150">
                                         <a key={idx} href={item.href}>
                                             {item.name}
                                         </a>
@@ -51,8 +54,8 @@ export default function Footer() {
                         </div>
                     </div>
                 </div>
-                <div className="mt-10 py-10 border-t border-gray-800 md:text-center">
-                    <p className="text-gray-300">© 2022 Float UI Inc. All rights reserved.</p>
+                <div className="mt-10 py-10 border-t border-white md:text-center">
+                    <p className="text-gray-300">© 2025 Float UI Inc. All rights reserved.</p>
                 </div>
             </div>
         </footer>
