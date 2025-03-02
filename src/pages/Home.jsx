@@ -7,7 +7,14 @@ import { useEffect } from "react";
 import { fetchMovies } from "../features/movies/movieAction";
 import { Link } from "react-router";
 
- 
+import Carousel from "../components/Carousel"; // Import the Carousel component
+
+// Import local images for the carousel
+import image1 from "../assets/img/carousel-1.jpg";
+import image2 from "../assets/img/carousel-2.jpg";
+import image3 from "../assets/img/carousel-3.jpg";
+
+
 export default function Home() {
 
     const dispatch = useDispatch();
@@ -17,29 +24,19 @@ export default function Home() {
 
     useEffect(() => {
         dispatch(fetchMovies())
-    },[dispatch])
+    }, [dispatch])
 
-    // function onIncrease() {
-    //     dispatch(increment())
-    // }
-
-    // can be function or const
-    // function onDecrease() {
-    //     dispatch(decrement())
-    // }
+    // Define the carouselImages array
+    const carouselImages = [image1, image2, image3];
 
     return (
         <main>
-            {/* <div>
-                <h1>home!!!</h1>
-                <MoiveDetail />
-            </div> */}
-            {/* <div className=" py-2 grid  gap-2"> */}
-                {/* <ButtonIcon onClick={onIncrease} icon={<FaPlus className="bg-green-600" />} />
-                <ButtonIcon onClick={onDecrease} icon={<FaMinus className="bg-red-600" />} /> */}
-                {/* <MoiveDetail /> */}
-            {/* </div> */}
-            {/* <hr /> */}
+            {/* Local Image Carousel */}
+            <div className="mb-10"> {/* Add margin below the carousel */}
+                <Carousel images={carouselImages} />
+            </div>
+
+            {/* Movie List */}
             <ul className="bg-green-300 grid gap-x-8 gap-y-10 mt-0 px-10 sm:grid-cols-2 lg:grid-cols-3">
                 {
                     movieData && movieData.results && movieData.results.slice(0, 9).map((movie) => (
@@ -63,6 +60,5 @@ export default function Home() {
                 }
             </ul>
         </main>
-        // duma
     )
 }

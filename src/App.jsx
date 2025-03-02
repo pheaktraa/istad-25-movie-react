@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import './index.css'
 
+
 function App({ movieData }) {
   return (
     <div>
@@ -19,5 +20,7 @@ function App({ movieData }) {
     </div>
   );
 }
+
+
 
 export default App
