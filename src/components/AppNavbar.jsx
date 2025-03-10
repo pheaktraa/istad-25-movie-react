@@ -34,9 +34,8 @@ const AvatarMenue = ({ avatar }) => {
                 </button>
             </div>
             <ul
-                className={`bg-white top-14 right-0 mt-6 space-y-6 lg:absolute lg:border lg:rounded-md lg:w-52 lg:shadow-md lg:space-y-0 lg:mt-0 ${
-                    state ? "" : "lg:hidden"
-                }`}
+                className={`bg-white top-14 right-0 mt-6 space-y-6 lg:absolute lg:border lg:rounded-md lg:w-52 lg:shadow-md lg:space-y-0 lg:mt-0 ${state ? "" : "lg:hidden"
+                    }`}
             >
                 {navigation.map((item, idx) => (
                     <li key={idx}>
@@ -76,19 +75,20 @@ export default function AppNavbar() {
     ];
 
     const submenuNav = [
-        { title: "Popular", path: "javascript:void(0)" },
-        { title: "Trending", path: "javascript:void(0)" },
-        { title: "Most Favorite", path: "javascript:void(0)" },
+        { title: "Popular", path: "/popular" },
+        { title: "Trending", path: "/popular" },
+        { title: "Most Favorite", path: "/popular" },
         // { title: "Transactions", path: "javascript:void(0)" },
         // { title: "Plans", path: "javascript:void(0)" },
     ];
 
+    const [activeIndex, setActiveIndex] = useState(null); // Track active menu item
+
     return (
         <header className="text-base lg:text-sm bg-black">
             <div
-                className={`items-center gap-x-14 px-4 max-w-screen-xl mx-auto lg:flex lg:px-8 lg:static ${
-                    state ? "h-full fixed inset-x-0" : ""
-                }`}
+                className={`items-center gap-x-14 px-4 max-w-screen-xl mx-auto lg:flex lg:px-8 lg:static ${state ? "h-full fixed inset-x-0" : ""
+                    }`}
             >
                 <div className="flex items-center justify-between py-3 lg:py-5 lg:block">
                     <Link to={"/"}>
@@ -130,9 +130,8 @@ export default function AppNavbar() {
                     </div>
                 </div>
                 <div
-                    className={`nav-menu flex-1 pb-28 mt-8 overflow-y-auto max-h-screen lg:block lg:overflow-visible lg:pb-0 lg:mt-0 ${
-                        state ? "" : "hidden"
-                    }`}
+                    className={`nav-menu flex-1 pb-28 mt-8 overflow-y-auto max-h-screen lg:block lg:overflow-visible lg:pb-0 lg:mt-0 ${state ? "" : "hidden"
+                        }`}
                 >
                     <ul className="items-center space-y-6 lg:flex lg:space-x-6 lg:space-y-0">
                         <form
@@ -183,25 +182,44 @@ export default function AppNavbar() {
                     </ul>
                 </div>
             </div>
-            <nav className="border-b">
+            <nav className="border-b-2">
                 <ul className="flex items-center gap-x-3 max-w-screen-xl mx-auto px-4 overflow-x-auto lg:px-8">
                     {submenuNav.map((item, idx) => (
                         <li
+                            className="py-1 overflow-hidden"
                             key={idx}
-                            className={`py-1 ${
-                                idx == 0 ? "border-b-2 border-white" : ""
-                            }`}
                         >
+                            <div className="relative">
+                                <a
+                                    href={item.path}
+                                    className={`block py-2 px-3 rounded-lg text-white hover:text-white hover:bg-red-600 duration-150 whitespace-nowrap`}
+                                >
+                                    {item.title}
+                                </a>
+                                {/* Removed the white bottom border */}
+                                {/* <div className="absolute bottom-0 left-0 w-full h-[2px] bg-white"></div> */}
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+
+            {/* <nav>
+                <ul className="flex items-center gap-x-3 max-w-screen-xl mx-auto px-4 overflow-x-auto lg:px-8">
+                    {submenuNav.map((item, idx) => (
+                        <li key={idx} className="py-1">
                             <a
                                 href={item.path}
-                                className="block py-2 px-3 rounded-lg text-white hover:text-white hover:bg-red-600 duration-150 whitespace-nowrap"
+                                className={`block py-2 px-3 rounded-lg text-white hover:text-white hover:bg-red-600 duration-150 whitespace-nowrap ${activeIndex === idx ? "border-b-2 border-white" : ""
+                                    }`}
+                                onClick={() => setActiveIndex(idx)} // Change active item on click
                             >
                                 {item.title}
                             </a>
                         </li>
                     ))}
                 </ul>
-            </nav>
-        </header>
+            </nav> */}
+        </header >
     );
 }

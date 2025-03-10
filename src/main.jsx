@@ -1,7 +1,8 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import { createBrowserRouter, Router, RouterProvider } from 'react-router'
+// import { createBrowserRouter, Router, RouterProvider } from 'react-router'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import People from './pages/Movies.jsx'
 import Home from './pages/Home.jsx'
 import MainLayout from './layouts/MainLayout.jsx'
@@ -13,6 +14,7 @@ import { Provider } from 'react-redux'
 import { store } from './Store.js'
 import MovieDetail from './components/MovieDetail.jsx'
 import Movies from './pages/Movies.jsx'
+import Popular from './pages/Popular.jsx'
 
 // createRoot(document.getElementById('root')).render(
 //   <StrictMode>
@@ -49,6 +51,10 @@ const router = createBrowserRouter(
         {
           path: '/movie/:id',
           element: <MovieDetail />
+        },
+        {
+          path: '/popular',
+          element: <Popular />
         },
       ],
     }

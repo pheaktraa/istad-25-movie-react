@@ -1,0 +1,15 @@
+.swiper-button-next,
+.swiper-button-prev {
+    color: white; /* Arrow color */
+    padding: 20px; /* Add space around the arrows */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    border-radius: 50%; /* Rounded arrows */
+}
+
+.swiper-button-next {
+    right: 10px; /* Position the next arrow */
+}
+
+.swiper-button-prev {
+    left: 10px; /* Position the previous arrow */
+}

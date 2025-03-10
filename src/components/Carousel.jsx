@@ -18,7 +18,7 @@ export default function Carousel({ images }) {
     return (
         <div id="indicators-carousel" className="relative w-full" data-carousel="static">
             {/* Carousel wrapper */}
-            <div className="relative h-[50vh] overflow-hidden rounded-lg md:h-[60vh]">
+            <div className="relative h-[50vh] overflow-hidden  md:h-[60vh]">
                 {images.map((image, index) => (
                     <div
                         key={index}
