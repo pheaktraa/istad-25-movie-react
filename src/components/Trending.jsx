@@ -1,49 +1,15 @@
-// import React from 'react';
-// import { Link } from 'react-router-dom';
 
-// export default function Popular({ movies }) {
-//     return (
-//         <div className="bg py-6">
-//             <h1 className="text-white text-3xl font-bold text-center mb-10">Popular Movies</h1>
-//             <ul className=" grid gap-4 px-4 mt-0 mb-0 px-0 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-//                 {
-//                     movies && movies.slice(0, 12).map((movie) => (
-//                         <li key={movie.id} className=" w-full mx-auto py-5 group sm:max-w-sm">
-//                             <Link to={`/movie/${movie.id}`}>
-//                                 <img
-//                                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-//                                     loading="lazy"
-//                                     alt={movie.original_title}
-//                                     className="w-full h-[500px] rounded-t-lg"
-//                                 />
-//                                 {/* Text container */}
-//                                 <div className="mt-0 space-y-2 px-4 rounded-b-lg bg-red-300/80">
-//                                     <span className="block text-indigo-600 text-sm">{movie.release_date}</span>
-//                                     <h3 className="text-lg text-gray-800 duration-150 group-hover:text-red-600 font-semibold">
-//                                         {movie.original_title}
-//                                     </h3>
-//                                     {/* <p className="text-gray-600 text-sm duration-150 group-hover:text-gray-800">
-//                                         {movie.overview}
-//                                     </p> */}
-//                                 </div>
-//                             </Link>
-//                         </li>
-//                     ))}
-//             </ul>
-//         </div>
-//     );
-// }
 
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 
-const PopularMovies = () => {
+const TrendingMovies = () => {
     const [movies, setMovies] = useState([]);
     const movieContainerRef = useRef(null);
 
     useEffect(() => {
-        fetch("https://api.themoviedb.org/3/movie/popular?api_key=aacdbe83dedab8fc913bd72adf3fdbad")
+        fetch("https://api.themoviedb.org/3/trending/movie/day?api_key=aacdbe83dedab8fc913bd72adf3fdbad")
             .then((res) => res.json())
             .then((data) => setMovies(data.results))
             .catch((error) => console.error("Error fetching movies:", error));
@@ -58,15 +24,13 @@ const PopularMovies = () => {
     };
 
     return (
-        <div className="relative bg-zinc-900 text-white py-10"
-        style={{ zIndex: 1 }}
-        >
+        <div className="relative bg-zinc-900 text-white py-10">
             <Link
-                to={"/popular"}
+                to={"/trending"}
                 className="inline-flex items-center text-2xl font-bold text-left mb-0 pl-[100px] underline hover:text-red-600 
                 duration-150 cursor-pointer"
             >
-                <h2 className="m-0 p-0">Popular Movies</h2>
+                <h2 className="m-0 p-0">Trending Movies</h2>
                 <span className="ml-2">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -163,4 +127,4 @@ const PopularMovies = () => {
     );
 };
 
-export default PopularMovies;
+export default TrendingMovies;

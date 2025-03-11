@@ -15,6 +15,7 @@ import { store } from './Store.js'
 import MovieDetail from './components/MovieDetail.jsx'
 import Movies from './pages/Movies.jsx'
 import Popular from './pages/Popular.jsx'
+import Trending from './pages/TrendingMovie.jsx'
 
 // createRoot(document.getElementById('root')).render(
 //   <StrictMode>
@@ -55,6 +56,10 @@ const router = createBrowserRouter(
         {
           path: '/popular',
           element: <Popular />
+        },
+        {
+          path: '/trending',
+          element: <Trending />
         },
       ],
     }

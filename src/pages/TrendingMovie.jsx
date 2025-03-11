@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMovies } from '../features/movies/movieAction';
 
-export default function Popular() {
+export default function Trending() {
     const dispatch = useDispatch();
     const { movieData, status, error } = useSelector((state) => state.movie);
 
@@ -44,7 +44,7 @@ export default function Popular() {
     return (
         <div className="bg-black py-6 min-h-screen">
             <div className="container mx-auto px-4">
-                <h1 className="text-white text-3xl font-bold text-center mb-10">Popular Movies</h1>
+                <h1 className="text-white text-3xl font-bold text-center mb-10">Trending Movies</h1>
                 <div className="grid gap-6 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                     {movieData.results.slice(0, 30).map((movie) => (
                         <div key={movie.id} className="mx-5 bg-gray-900 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:transform hover:scale-105">

@@ -15,6 +15,8 @@ import Carousel from "../components/Carousel"; // Import the Carousel component
 import image1 from "../assets/img/carousel-1.jpg";
 import image2 from "../assets/img/carousel-2.jpg";
 import image3 from "../assets/img/carousel-3.jpg";
+import TrendingMovies from "../components/Trending";
+import PromotionSection from "../components/PromoSection";
 
 
 export default function Home() {
@@ -40,6 +42,13 @@ export default function Home() {
 
             {/* Popular Movies */}
             <Popular movies={movieData?.results} />
+
+            {/* {PromoSection} */}
+            <PromotionSection />
+
+            {/* {TrendingMovies} */}
+            <TrendingMovies movies={movieData?.results} />
+
             
         </main>
     )

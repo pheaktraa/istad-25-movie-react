@@ -35,7 +35,8 @@ const AvatarMenue = ({ avatar }) => {
             </div>
             <ul
                 className={`bg-white top-14 right-0 mt-6 space-y-6 lg:absolute lg:border lg:rounded-md lg:w-52 lg:shadow-md lg:space-y-0 lg:mt-0 ${state ? "" : "lg:hidden"
-                    }`}
+                }`}
+                style={{ zIndex: 1000 }} // Add this line
             >
                 {navigation.map((item, idx) => (
                     <li key={idx}>
@@ -76,7 +77,7 @@ export default function AppNavbar() {
 
     const submenuNav = [
         { title: "Popular", path: "/popular" },
-        { title: "Trending", path: "/popular" },
+        { title: "Trending", path: "/trending" },
         { title: "Most Favorite", path: "/popular" },
         // { title: "Transactions", path: "javascript:void(0)" },
         // { title: "Plans", path: "javascript:void(0)" },
@@ -92,7 +93,7 @@ export default function AppNavbar() {
             >
                 <div className="flex items-center justify-between py-3 lg:py-5 lg:block">
                     <Link to={"/"}>
-                        <h1 className="text-2xl font-bold text-red-800">ReelRush</h1>
+                        <h1 className="text-2xl font-bold text-[#E50914]">ReelRush</h1>
                     </Link>
                     <div className="lg:hidden">
                         <button
