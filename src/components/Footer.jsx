@@ -2,7 +2,7 @@ import myIcon from '../assets/img/myIcon.svg';
 
 
 export default function Footer() {
-    
+
     const footerNavs = [
         {
             href: 'javascript:void()',
@@ -26,7 +26,21 @@ export default function Footer() {
             <div className="max-w-screen-xl mx-auto px-4 md:px-8">
                 <div className="justify-between sm:flex">
                     <div className="space-y-6">
-                        <img src={myIcon} className="w-32" alt='logo'/>
+                        {/* <img src={myIcon} className="w-32"
+                            style={{
+                                filter: 'invert(15%) sepia(100%) saturate(5000%) hue-rotate(350deg) brightness(90%) contrast(120%)',
+                            }}
+                             alt='logo'/> */}
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24" // Adjust viewBox based on your SVG
+                            className="w-32 text-red-600" // Use Tailwind to set color
+                        >
+                            <path
+                                fill="currentColor" // This will inherit the text color (red-600)
+                                d="M12 2L2 22h20L12 2zm0 4.5l6.5 11H5.5L12 6.5z"
+                            />
+                        </svg>
                         <p className="max-w-md">
                             <span className="text-red-500 text-xl">ReelRush</span> does not store any files on our server, we only linked to the media which is hosted on 3rd party services.
                         </p>

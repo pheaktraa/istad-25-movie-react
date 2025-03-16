@@ -5,51 +5,174 @@ export default function MoiveDetail() {
 
     const { id } = useParams();
     const [movie, setMovie] = useState([{}])
+    const [cast, setCast] = useState([]);
 
     useEffect(() => {
         fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=aacdbe83dedab8fc913bd72adf3fdbad`)
-        .then(response => response.json())
-        .then(data => setMovie(data))
+            .then(response => response.json())
+            .then(data => setMovie(data))
+
+
+        fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=aacdbe83dedab8fc913bd72adf3fdbad`)
+            .then(response => response.json())
+            // .then(data => setCast(data.cast.slice(0, 100))); 
+            .then(data => setCast(data.cast));
     }, [id])
 
-    // const myStyle = {
-    //     color: "blue",
-    //     width: 400,
-    //     // height: 400,
-    //     // backgroundColor: "red",
-    // };
-    // const imgStyle = {
-    //     // backgroundImage: URL('https://c4.wallpaperflare.com/wallpaper/631/573/275/cars-2-the-movie-wallpaper-preview.jpg')
-    // };
-    // const ImageUrl = 'https://miro.medium.com/v2/resize:fit:1400/0*gNmwcCm2Pe6oHkNc.jpg'
+
     return (
-        <div 
-            className="bg-red-300 w-full h-[600px] p-4"
-            style={{
-                backgroundImage: `url('https://image.tmdb.org/t/p/original${movie.backdrop_path}')`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-            }}
-        >
-            <div 
-                className="container mx-auto flex flex-wrap gap-8"
-                style={{
-                }}
+        // <div 
+        //     className="bg-red-300 w-full h-[600px] p-4"
+        //     style={{
+        //         backgroundImage: `url('https://image.tmdb.org/t/p/original${movie.backdrop_path}')`,
+        //         backgroundSize: "cover",
+        //         backgroundPosition: "center",
+        //     }}
+        // >
+        //     <div 
+        //         className="container mx-auto mt-20 flex flex-wrap gap-8"
+        //         style={{
+        //         }}
+        //     >
+        //         <div >
+        //             <img 
+        //                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+        //                 className="w-1/2 rounded-lg shadow-lg"
+        //                 alt={movie.original_title} ></img>
+        //         </div>
+        //         <div className="flex-1 p-4">
+        //             <h1 className="text-2xl font-bold mb-4">
+        //                 Movie Details
+        //                 {movie.original_title}
+        //             </h1>
+        //             <p>Cars{movie.overview}</p>
+        //         </div>
+        //     </div>
+        // </div>
+
+
+        // <div className="w-full min-h-screen">
+        //     {/* Movie Detail Section with Background Image */}
+        //     <div 
+        //         className="w-full min-h-[60vh] flex items-center justify-center text-white p-8"
+        //         style={{
+        //             backgroundImage: `url('https://image.tmdb.org/t/p/original${movie.backdrop_path}')`,
+        //             backgroundSize: "cover",
+        //             backgroundPosition: "center",
+        //         }}
+        //     >
+        //         <div className="w-full p-0 rounded-lg shadow-lg flex flex-col md:flex-row gap-8">
+        //             {/* Poster */}
+        //             <img 
+        //                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 
+        //                 className="w-60 h-auto rounded-lg shadow-md" 
+        //                 alt={movie.original_title} 
+        //             />
+
+        //             {/* Movie Details */}
+        //             <div className="flex-1">
+        //                 <h1 className="text-4xl font-bold">{movie.original_title} ({movie.release_date?.split('-')[0]})</h1>
+        //                 <p className="text-gray-300 mt-2">{movie.overview}</p>
+
+        //                 <div className="mt-4">
+        //                     <p><strong>Rating:</strong> {movie.vote_average} ⭐</p>
+        //                     <p><strong>Runtime:</strong> {movie.runtime} mins</p>
+        //                     <p><strong>Genres:</strong> {movie.genres?.map(g => g.name).join(", ")}</p>
+        //                 </div>
+        //             </div>
+        //         </div>
+        //     </div>
+
+        //     {/* Cast Section with White Background */}
+        //     <div className="bg-white py-12">
+        //         <h2 className="text-3xl font-bold text-center mb-6">Top Billed Cast</h2>
+        //         <div className="max-w-6xl mx-auto flex flex-wrap justify-center gap-6">
+        //             {cast.map(actor => (
+        //                 <div key={actor.id} className="w-40 text-center">
+        //                     <img 
+        //                         src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`} 
+        //                         className="w-full h-40 object-cover rounded-lg shadow-md" 
+        //                         alt={actor.name} 
+        //                     />
+        //                     <p className="mt-2 font-semibold">{actor.name}</p>
+        //                     <p className="text-gray-500 text-sm">{actor.character}</p>
+        //                 </div>
+        //             ))}
+        //         </div>
+        //     </div>
+        // </div>
+
+
+
+        <div>
+            <div
+                className="relative flex flex-col justify-center items-center bg-cover bg-top bg-no-repeat px-4 
+                py-16 md:py-24 h-[700px]"
+                style={{ backgroundImage: `url('https://image.tmdb.org/t/p/original${movie.backdrop_path}')` }}
             >
-                <div >
-                    <img 
-                        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                        className="w-1/2 rounded-lg shadow-lg"
-                        alt={movie.original_title} ></img>
+                {/* Dark overlay */}
+                <div className="absolute inset-0 bg-black/70"></div>
+                <div
+                    // className="p-0 relative z-10 mx-auto mt-10 flex flex-wrap gap-8"
+                    className="relative z-10 mx-auto mt-10 flex gap-8 items-start"
+                    style={{
+                    }}
+                >
+                    <div className="ml-[200px]">  {/* Adjust ml-10 as needed */}
+                        <img
+                            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                            // className="w-1/2 rounded-lg shadow-lg "
+                            className="w-60 rounded-lg shadow-lg"
+                            alt={movie.original_title} ></img>
+                    </div>
+
+                    {/* Movie Details */}
+                    <div className="flex-1 p-0 text-white mr-[100px]">
+                        <h1 className="text-3xl font-bold mb-4">
+                            {movie.original_title}
+                        </h1>
+                        <p className="text-lg leading-relaxed font-medium tracking-wide">Cars{movie.overview}</p>
+
+
+                        <div className="mt-[50px] text-lg flex flex-col gap-1">
+                            <p><strong>Rating:</strong> {movie.vote_average} ⭐</p>
+                            <p><strong>Runtime:</strong> {movie.runtime} mins</p>
+                            <p><strong>Genres:</strong> {movie.genres?.map(g => g.name).join(", ")}</p>
+                        </div>
+                    </div>
                 </div>
-                <div className="flex-1 p-4">
-                    <h1 className="text-2xl font-bold mb-4">
-                        Movie Details
-                        {movie.original_title}
-                    </h1>
-                    <p>Cars{movie.overview}</p>
+            </div>
+
+
+            {/* NEW CAST SECTION */}
+            <div className="w-full overflow-hidden">
+                <div className="bg-white">
+                    {/* py-0 px-4 m-10 */}
+                    <h2 className="pt-10 pb-5 pl-[200px] text-black text-4xl font-bold mb-0">Cast</h2>
+                    <div className="max-w-5xl mx-auto">
+                        {/* <h2 className="text-black text-2xl font-semibold mb-4">Cast</h2> */}
+                        <div className="flex gap-8 overflow-x-auto  -mx-40 pb-4">
+                            {/* -mx-40 px-8 */}
+                            {cast.map((actor) => (
+                                <div key={actor.id} className="w-48 flex-shrink-0 text-center">
+                                    <img
+                                        src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
+                                        className="w-48 h-48 rounded-full object-cover shadow-lg mx-auto"
+                                        alt={actor.name}
+                                    />
+                                    <p className="text-black mt-4 text-lg font-bold">{actor.name}</p>
+                                    <p className="text-black text-sm mt-1">{actor.character}</p>
+                                </div>
+                            ))}
+                            {/* Add an empty div to push the content to the left */}
+                            <div className="w-8 flex-shrink-0"></div> {/* Adjust width as needed */}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+
+
     )
 }

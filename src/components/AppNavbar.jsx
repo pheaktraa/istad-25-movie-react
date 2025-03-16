@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { getProfile } from "../features/auth/authAction";
 
 // Avatar with dropdown menu
