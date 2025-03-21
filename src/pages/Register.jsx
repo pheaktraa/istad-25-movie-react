@@ -64,12 +64,12 @@ export default function Register() {
 
 
     return (
-        <main className="w-full h-screen flex flex-col items-center justify-center bg-gray-50 sm:px-4">
+        <main className="w-full h-screen flex flex-col items-center justify-center bg-[#F5F5F5] sm:px-4">
             <div className="w-full space-y-4 text-gray-600 sm:max-w-md mt-[-300px]">
                 <div className="text-center">
                     {/* <img src="https://floatui.com/logo.svg" width={150} className="mx-auto" /> */}
                     <div className="mt-5 space-y-2">
-                        <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">Login</h3>
+                        <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">Welcome!</h3>
                         {/* <p className="">Already have an account? <a href="javascript:void(0)" className="font-medium text-indigo-600 hover:text-indigo-500">Log in</a></p> */}
                     </div>
                 </div>
@@ -103,7 +103,7 @@ export default function Register() {
                                 name="email"
                                 type="email"
                                 // required
-                                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-red-600 shadow-sm rounded-lg"
                             />
                             {formik.touched.email && formik.errors.email ? (
                                 <div className="text-red-500">{formik.errors.email}</div>
@@ -120,7 +120,7 @@ export default function Register() {
                                 name="password"
                                 type="password"
                                 // required
-                                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-red-600 shadow-sm rounded-lg"
                             />
                             {formik.touched.password && formik.errors.password ? (
                                 <div className="text-red-500">{formik.errors.password}</div>
@@ -129,7 +129,7 @@ export default function Register() {
                         <button
                             // have to add type submit so data from form go
                             type="submit"
-                            className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150"
+                            className="w-full px-4 py-2 text-white font-medium bg-red-600 hover:bg-red-500 active:bg-red-600 rounded-lg duration-150"
                         >
                             Login
                         </button>

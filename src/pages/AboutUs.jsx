@@ -72,7 +72,7 @@ export default function AboutUs() {
     ]
 
     return (
-        <section className="py-14">
+        <section className="py-14 bg-[#F5F5F5]">
             <div className="max-w-screen-xl mx-auto px-4 text-center md:px-8">
                 <div className="max-w-xl mx-auto">
                     <h3 className="text-black text-3xl font-semibold sm:text-4xl">
@@ -90,7 +90,7 @@ export default function AboutUs() {
                                     <div className="w-24 h-24 mx-auto">
                                         <img
                                             src={item.avatar}
-                                            className="w-full h-full rounded-full"
+                                            className="w-full h-full rounded-full border-2 border-black"
                                             alt=""
                                         />
                                     </div>

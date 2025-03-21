@@ -22,23 +22,24 @@ export default function Footer() {
         }
     ]
     return (
-        <footer className="pt-10  bg-black text-white">
+        <footer className="pt-10  bg-zinc-900 text-white border-t-2">
             <div className="max-w-screen-xl mx-auto px-4 md:px-8">
                 <div className="justify-between sm:flex">
                     <div className="space-y-6">
-                        {/* <img src={myIcon} className="w-32"
-                            style={{
-                                filter: 'invert(15%) sepia(100%) saturate(5000%) hue-rotate(350deg) brightness(90%) contrast(120%)',
-                            }}
-                             alt='logo'/> */}
-                        <svg
+                         {/* New SVG Icon */}
+                         <svg
+                            className="w-[200px] h-[200px] text-red-600"
+                            aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24" // Adjust viewBox based on your SVG
-                            className="w-32 text-red-600" // Use Tailwind to set color
+                            width="24"
+                            height="24"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
                         >
                             <path
-                                fill="currentColor" // This will inherit the text color (red-600)
-                                d="M12 2L2 22h20L12 2zm0 4.5l6.5 11H5.5L12 6.5z"
+                                fillRule="evenodd"
+                                d="M19.003 3A2 2 0 0 1 21 5v2h-2V5.414L17.414 7h-2.828l2-2h-2.172l-2 2H9.586l2-2H9.414l-2 2H3V5a2 2 0 0 1 2-2h14.003ZM3 9v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9H3Zm2-2.414L6.586 5H5v1.586Zm4.553 4.52a1 1 0 0 1 1.047.094l4 3a1 1 0 0 1 0 1.6l-4 3A1 1 0 0 1 9 18v-6a1 1 0 0 1 .553-.894Z"
+                                clipRule="evenodd"
                             />
                         </svg>
                         <p className="max-w-md">
