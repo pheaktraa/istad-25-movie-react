@@ -3,7 +3,7 @@ import React from "react";
 const PromotionSection = () => {
     return (
         <section 
-            className="relative flex flex-col justify-center items-center bg-cover bg-top bg-no-repeat px-4 py-16 md:py-24 h-[700px]" 
+            className="relative z-20 flex flex-col justify-center items-center bg-cover bg-top bg-no-repeat px-4 py-16 md:py-24 h-[700px]" 
             style={{ backgroundImage: `url('https://i.ebayimg.com/00/s/MTIwMFgxNjAw/z/GtEAAOSw1W9eN1cY/$_57.JPG?set_id=8800005007')` }}
         >
             {/* Dark overlay */}

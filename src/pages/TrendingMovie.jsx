@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchMovies } from '../features/movies/movieAction';
+// import { fetchMovies } from '../features/movies/movieAction';
+import { fetchTrendingMovies } from '../features/movies/movieAction';
 
 export default function Trending() {
     const dispatch = useDispatch();
@@ -9,7 +10,7 @@ export default function Trending() {
 
     useEffect(() => {
         // Fetch movies when the component mounts
-        dispatch(fetchMovies());
+        dispatch(fetchTrendingMovies());
     }, [dispatch]);
 
     // Handle loading state

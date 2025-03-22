@@ -24,15 +24,16 @@ const TrendingMovies = () => {
     };
 
     return (
-        <div className="relative bg-zinc-900 text-white py-10">
+        <div className="relative z-20 bg-zinc-900 text-white py-10">
             <Link
                 to={"/trending"}
-                className="inline-flex items-center text-2xl font-bold text-left mb-0 pl-[100px] underline hover:text-red-600 
-                duration-150 cursor-pointer"
+                className="inline-flex items-center text-2xl font-bold text-left mb-0 pl-[100px] "
             >
-                <h2 className="m-0 p-0">Trending Movies</h2>
-                <span className="ml-2">
-                    <svg
+                <span className="ml-2 flex gap-3 items-center">
+                    <h2 className="m-0 p-0">Trending</h2>
+                    <p className="pt-1 text-lg uppercase hover:text-red-600 
+                        duration-150 cursor-pointer">view all</p>
+                    {/* <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-6 w-6"
                         fill="none"
@@ -45,7 +46,7 @@ const TrendingMovies = () => {
                             strokeWidth={4}
                             d="M9 5l7 7-7 7"
                         />
-                    </svg>
+                    </svg> */}
                 </span>
             </Link>
             <div className="container mx-auto">
