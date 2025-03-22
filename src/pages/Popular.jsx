@@ -146,11 +146,11 @@ export default function Popular() {
                 <h1 className="text-white text-3xl font-bold text-center mb-10">
                     Popular Movies
                 </h1>
-                <div className="grid gap-6 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                     {popularMovies.map((movie) => (
                         <div
                             key={movie.id}
-                            className="mx-5 bg-gray-900 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:transform hover:scale-105"
+                            className="bg-gray-900 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:transform hover:scale-105"
                         >
                             <Link to={`/movie/${movie.id}`}>
                                 {/* Image with title and rating overlay */}
