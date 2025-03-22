@@ -4,12 +4,12 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 
-const TrendingMovies = () => {
+const TopRated = () => {
     const [movies, setMovies] = useState([]);
     const movieContainerRef = useRef(null);
 
     useEffect(() => {
-        fetch("https://api.themoviedb.org/3/trending/movie/day?api_key=aacdbe83dedab8fc913bd72adf3fdbad")
+        fetch("https://api.themoviedb.org/3/movie/top_rated?api_key=aacdbe83dedab8fc913bd72adf3fdbad")
             .then((res) => res.json())
             .then((data) => setMovies(data.results))
             .catch((error) => console.error("Error fetching movies:", error));
@@ -27,12 +27,12 @@ const TrendingMovies = () => {
         <div className="relative z-20 bg-zinc-900 text-white py-10">
             <Link
                 to={"/trending"}
-                 className="inline-flex items-center text-2xl font-bold text-left mb-0 pl-[5px] md:pl-[90px] sm:pl-[10px]"
+                className="inline-flex items-center text-2xl font-bold text-left mb-0 pl-[100px] "
             >
                 <span className="ml-2 flex gap-3 items-center">
-                    <h2 className="m-0 p-0 text-xl sm:text-2xl md:text-3xl">Trending</h2>
-                    <p className="pt-1 text-lg uppercase text-red-600 hover:text-red-400 hover:underline
-                        duration-150 cursor-pointer sm:text-base md:text-lg">view all</p>
+                    <h2 className="m-0 p-0">Trending</h2>
+                    <p className="pt-1 text-lg uppercase hover:text-red-600 
+                        duration-150 cursor-pointer">view all</p>
                     {/* <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-6 w-6"
@@ -128,4 +128,4 @@ const TrendingMovies = () => {
     );
 };
 
-export default TrendingMovies;
+export default TopRated;

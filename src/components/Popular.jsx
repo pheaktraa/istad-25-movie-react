@@ -63,12 +63,12 @@ const PopularMovies = () => {
         >
             <Link
                 to={"/popular"}
-                className="inline-flex items-center text-2xl font-bold text-left mb-0 pl-[100px] "
+                className="inline-flex items-center text-2xl font-bold text-left mb-0 pl-[5px] md:pl-[90px] sm:pl-[10px]"
             >
                 <span className="ml-2 flex gap-3 items-center">
-                    <h2 className="m-0 p-0">Popular Movies</h2>
-                    <p className="pt-1 text-lg uppercase hover:text-red-600 
-                        duration-150 cursor-pointer">view all</p>
+                    <h2 className="m-0 p-0 text-xl sm:text-2xl md:text-3xl">Popular Movies</h2>
+                    <p className="pt-1 text-lg uppercase text-red-600 hover:text-red-400 hover:underline
+                        duration-150 cursor-pointer sm:text-base md:text-lg">view all</p>
                     {/* <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-6 w-6"
