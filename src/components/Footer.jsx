@@ -1,4 +1,4 @@
-import myIcon from '../assets/img/myIcon.svg';
+// import myIcon from '../assets/img/myIcon.svg';
 import mySvg from '../assets/img/svgicon.svg'
 
 
