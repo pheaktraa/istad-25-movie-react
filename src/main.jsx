@@ -16,6 +16,7 @@ import MovieDetail from './components/MovieDetail.jsx'
 import Movies from './pages/Movies.jsx'
 import Popular from './pages/Popular.jsx'
 import Trending from './pages/TrendingMovie.jsx'
+import TopRated from './pages/TopRated.jsx'
 
 // createRoot(document.getElementById('root')).render(
 //   <StrictMode>
@@ -31,7 +32,6 @@ const router = createBrowserRouter(
         {
           path: "/",
           element: <Home />,
-          // element: <MovieCard />,
         },
         {
           path: '/movies',
@@ -61,6 +61,10 @@ const router = createBrowserRouter(
           path: '/trending',
           element: <Trending />
         },
+        {
+          path: '/top-rated',
+          element: <TopRated />
+        },
       ],
     }
   ]
@@ -72,7 +76,6 @@ createRoot(document.getElementById('root')).render(
     {/* <RouterProvider router={router} /> */}
     <Provider store={store}>
       <RouterProvider router={router} />
-
     </Provider>
   </StrictMode>,
 )

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { getProfile } from "../features/auth/authAction";
 
 // Avatar with dropdown menu
@@ -34,9 +34,8 @@ const AvatarMenue = ({ avatar }) => {
                 </button>
             </div>
             <ul
-                className={`bg-white top-14 right-0 mt-6 space-y-6 lg:absolute lg:border lg:rounded-md lg:w-52 lg:shadow-md lg:space-y-0 lg:mt-0 ${state ? "" : "lg:hidden"
-                }`}
-                style={{ zIndex: 1000 }} // Add this line
+                className={`bg-white top-14 right-0 mt-6 space-y-6 lg:absolute lg:border lg:rounded-md lg:w-52 lg:shadow-md lg:space-y-0 lg:mt-0
+                    ${state ? "" : "lg:hidden"} `}
             >
                 {navigation.map((item, idx) => (
                     <li key={idx}>
@@ -64,6 +63,11 @@ export default function AppNavbar() {
     const accessToken = useSelector((state) => state.auth.accessToken);
     const [state, setState] = useState(false);
 
+    // Use useLocation to get the current route
+    const location = useLocation();
+    const isLoginPage = location.pathname === "/login"; // Check if the current route is /login
+
+
     useEffect(() => {
         console.log("app navbar use effect");
         dispatch(getProfile(accessToken));
@@ -86,7 +90,7 @@ export default function AppNavbar() {
     const [activeIndex, setActiveIndex] = useState(null); // Track active menu item
 
     return (
-        <header className="text-base lg:text-sm bg-black">
+        <header className={`text-base lg:text-sm relative z-50 ${isLoginPage ? "bg-zinc-900" : "bg-zinc-900"}`}>
             <div
                 className={`items-center gap-x-14 px-4 max-w-screen-xl mx-auto lg:flex lg:px-8 lg:static ${state ? "h-full fixed inset-x-0" : ""
                     }`}
@@ -130,19 +134,63 @@ export default function AppNavbar() {
                         </button>
                     </div>
                 </div>
+
+
+
+                {/* Here's the modified section: combining main menu and submenu */}
                 <div
-                    className={`nav-menu flex-1 pb-28 mt-8 overflow-y-auto max-h-screen lg:block lg:overflow-visible lg:pb-0 lg:mt-0 ${state ? "" : "hidden"
-                        }`}
-                >
+                    className={`nav-menu flex-1 pb-28 mt-8 overflow-y-auto max-h-screen lg:block lg:overflow-visible lg:pb-0 lg:mt-0 
+                        ${state ? "" : "hidden"} `}
+                > {/* Mobile menu content */}
                     <ul className="items-center space-y-6 lg:flex lg:space-x-6 lg:space-y-0">
-                        <form
-                            onSubmit={(e) => e.preventDefault()}
-                            className="flex-1 items-center justify-end pb-4 lg:flex lg:pb-0"
-                        >
-                            <div className="flex items-center gap-1 px-2 border border-white rounded-lg bg-white">
+                        {/* Submenu navigation moved here */}
+                        {submenuNav.map((item, idx) => (
+                            <li key={`submenu-${idx}`} className="py-1 hidden lg:block">
+
+                                <a href={item.path}
+                                    className="block py-2 px-3 rounded-lg text-white hover:text-white hover:bg-red-600 duration-150 whitespace-nowrap"
+                                >
+                                    {item.title}
+                                </a>
+                            </li>
+                        ))}
+
+
+                        {/* <form
+                        onSubmit={(e) => e.preventDefault()}
+                        className="flex-1 items-center justify-end pb-4 lg:flex lg:pb-0"
+                    >
+                        <div className="flex items-center gap-1 px-2 border border-white rounded-lg bg-white">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-6 h-6 text-gray-400"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                />
+                            </svg>
+                            <input
+                                type="text"
+                                placeholder="Search"
+                                className="w-full px-2 py-2 text-gray-900 bg-transparent rounded-md outline-none"
+                            />
+                        </div>
+                    </form> */}
+                        {/* Search Bar */}
+                        <li className="py-1 pl-[200px]">
+                            <form
+                                onSubmit={(e) => e.preventDefault()}
+                                className="flex items-center gap-1 px-2 border border-white rounded-lg bg-white focus-within:border-red-600"
+                            >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    className="w-6 h-6 text-gray-400"
+                                    className="w-6 h-6 text-red-600" // Change icon color to red
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
@@ -157,15 +205,15 @@ export default function AppNavbar() {
                                 <input
                                     type="text"
                                     placeholder="Search"
-                                    className="w-full px-2 py-2 text-gray-900 bg-transparent rounded-md outline-none"
+                                    className="w-full px-2 py-2 text-gray-900 bg-transparent rounded-md outline-none focus:border-red-600"
                                 />
-                            </div>
-                        </form>
+                            </form>
+                        </li>
                         {navigation.map((item, idx) => (
-                            <li key={idx}>
+                            <li key={idx} className="py-1 hidden lg:block">
                                 <Link
                                     to={item.path}
-                                    className="block text-white hover:text-red-600"
+                                    className="block py-2 px-3 rounded-lg text-white hover:text-white hover:bg-red-600 duration-150 whitespace-nowrap"
                                 >
                                     {item.title}
                                 </Link>
@@ -175,7 +223,7 @@ export default function AppNavbar() {
                             <AvatarMenue avatar={profile.avatar} />
                         ) : (
                             <li>
-                                <Link to="/login" className="block text-white hover:text-red-600">
+                                <Link to="/login" className="block text-white py-2 px-3 rounded-lg text-white hover:text-white hover:bg-red-600 duration-150 whitespace-nowrap">
                                     Log in
                                 </Link>
                             </li>
@@ -183,7 +231,7 @@ export default function AppNavbar() {
                     </ul>
                 </div>
             </div>
-            <nav className="border-b-2">
+            {/* <nav className="border-b-2">
                 <ul className="flex items-center gap-x-3 max-w-screen-xl mx-auto px-4 overflow-x-auto lg:px-8">
                     {submenuNav.map((item, idx) => (
                         <li
@@ -198,25 +246,8 @@ export default function AppNavbar() {
                                     {item.title}
                                 </a>
                                 {/* Removed the white bottom border */}
-                                {/* <div className="absolute bottom-0 left-0 w-full h-[2px] bg-white"></div> */}
-                            </div>
-                        </li>
-                    ))}
-                </ul>
-            </nav>
-
-            {/* <nav>
-                <ul className="flex items-center gap-x-3 max-w-screen-xl mx-auto px-4 overflow-x-auto lg:px-8">
-                    {submenuNav.map((item, idx) => (
-                        <li key={idx} className="py-1">
-                            <a
-                                href={item.path}
-                                className={`block py-2 px-3 rounded-lg text-white hover:text-white hover:bg-red-600 duration-150 whitespace-nowrap ${activeIndex === idx ? "border-b-2 border-white" : ""
-                                    }`}
-                                onClick={() => setActiveIndex(idx)} // Change active item on click
-                            >
-                                {item.title}
-                            </a>
+            {/* <div className="absolute bottom-0 left-0 w-full h-[2px] bg-white"></div> */}
+            {/* </div>
                         </li>
                     ))}
                 </ul>
